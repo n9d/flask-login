@@ -1,0 +1,17 @@
+version: '3'
+services:
+  flask:
+    build: .
+    working_dir: '/root/app'
+    volumes:
+      - ./app:/root/app
+    ports:
+      - "5000:5000"
+    environment:
+      - DEBUG=True
+      - DEBUG_WITH_APTANA=True
+      - FLASK_APP=app.py
+      - FLASK_ENV=development # 開発サーバにすることでオートリロードがオンになる
+      - FLASK_RUN_PORT=5000
+      - FLASK_RUN_HOST=0.0.0.0 # localhost以外からもアクセス可能にする
+    entrypoint: "flask run"

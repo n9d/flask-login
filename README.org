@@ -1,0 +1,44 @@
+* flask-base
+
+* 特徴
+
+- dockerで起動する flaskの環境
+- virtualenvつかってないので環境を汚さない
+- docker-composeで起動するとデバッグモードで動作する
+- dockerで起動するとリリースモードで動作する
+- 追加パッケージは =Dockerfile= に記述する
+
+
+* 開発環境を起動する
+
+#+BEGIN_SRC sh :exports both
+docker-compose up
+#+END_SRC
+
+- http://localhost:5000 へアクセスすると下記のように出力される
+- =Debugger PIN= はブラウザからデバッグする際に入力する
+
+#+BEGIN_EXAMPLE
+Starting flask-base_flask_1 ... done
+Attaching to flask-base_flask_1
+flask_1  |  * Serving Flask app "app.py" (lazy loading)
+flask_1  |  * Environment: development
+flask_1  |  * Debug mode: on
+flask_1  |  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+flask_1  |  * Restarting with stat
+flask_1  |  * Debugger is active!
+flask_1  |  * Debugger PIN: 266-925-490
+flask_1  | 172.25.0.1 - - [07/Dec/2019 23:27:39] "GET / HTTP/1.1" 200 -
+#+END_EXAMPLE
+
+* ローカルでgunicornを起動する
+
+- 作成されるDockerイメージはfargate等にそのまま用いることができる (=fargate cli=等を利用)
+- =./app= ディレクトリを取り込むために =docker build= の必要あり
+- もちろんローカルでも下記のように起動できる
+
+#+BEGIN_SRC sh :exports both :results pp
+docker run --rm -p 5000:5000 flask-base_flask
+#+END_SRC
+
+- 問題点 :: ログを標準出力に出せていない
