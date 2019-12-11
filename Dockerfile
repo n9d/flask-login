@@ -16,7 +16,9 @@ EXPOSE 5000
 ADD . /root
 RUN pip install \
 	flask \
+	flask-login \
 	gunicorn
+
 
 #RUN pip install Flask-BasicAuth
 

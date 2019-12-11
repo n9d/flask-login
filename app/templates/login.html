@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+
+
+{% block title %}要約作成{% endblock %}
+
+{% block styles %}
+{{super()}}
+<style>
+ .summary-nowrap {
+   overflow: hidden;
+ }
+</style>
+{% endblock styles %}
+
+{% block navbar %}{{super()}}
+{% endblock navbar %}
+
+
+{% block content %}
+
+<div class="card" style="width: 18rem;" >
+
+  <div class="alert alert-primary" role="alert">
+    Login
+  </div>
+
+  <form action="/login" method="post">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">User ID</span>
+      </div>
+      <input type="text" class="form-control" placeholder="Userid" aria-label="Userid" aria-describedby="basic-addon1" name="userid" value="{{request.form.username }}">
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon2">Password</span>
+      </div>
+      <input type="password" class="form-control" placeholder="password" aria-label="password" aria-describedby="basic-addon2" name="password" value="{{request.form.password }}">
+    </div>
+
+    <input class="btn btn-outline-primary" type="submit" value="Login">
+  </form>
+
+</div>
+
+<a class="btn btn-outline-primary" href="/changepassword">Change Password</a>
+
+{% endblock  content %}
+
+{% block scripts %}{{super()}}
+{% endblock  scripts %}
