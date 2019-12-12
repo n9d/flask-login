@@ -8,9 +8,5 @@
   "zzz": {
     "password": "2UJ9Mk7Lp9eiI",
     "admin": true
-  },
-  "foo": {
-    "password": "$6$6sJL40xQAkU7EGDd$tZ2NjMuf2MsgzgIUgKNH34sIldy8LbufeCCiJ6cYM.yQI5.JLX8F2K.27Bx0BbYzgVLElH2FULS1i5rvAlEys.",
-    "admin": "on"
   }
 }
