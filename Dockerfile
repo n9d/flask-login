@@ -24,7 +24,7 @@ RUN pip install \
 
 WORKDIR /root/app
 
-EXPOSE 5000/tcp
-ENV GUNICORN_CMD_ARGS="--bind=0.0.0.0:5000 --workers=3 --access_logfile=- --log-file=- --log-level=info"
+EXPOSE 80/tcp
+ENV GUNICORN_CMD_ARGS="--bind=0.0.0.0:80 --workers=3 --worker-tmp-dir /dev/shm --log-file=- --log-level=info"
 
 ENTRYPOINT ["gunicorn","app:app"]

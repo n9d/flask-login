@@ -14,6 +14,7 @@ app.register_blueprint(login_page)
 
 
 @app.route('/')
-def hello_world():
-    #raise
-    return 'Hello, World!'
+@flask_login.login_required
+def show():
+    #raise #コレをコメントインすることで強制停止してブラウザでロギング可能
+    return flask.render_template('app.html', user=flask_login.current_user.id)

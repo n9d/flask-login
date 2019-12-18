@@ -2,6 +2,8 @@
 
 * 特徴
 
+- flaskを使ったログイン観光
+
 - dockerで起動する flaskの環境
 - virtualenvつかってないので環境を汚さない
 - docker-composeで起動するとデバッグモードで動作する
@@ -19,8 +21,8 @@ docker-compose up
 - =Debugger PIN= はブラウザからデバッグする際に入力する
 
 #+BEGIN_EXAMPLE
-Starting flask-base_flask_1 ... done
-Attaching to flask-base_flask_1
+Starting flask-login_flask_1 ... done
+Attaching to flask-login_flask_1
 flask_1  |  * Serving Flask app "app.py" (lazy loading)
 flask_1  |  * Environment: development
 flask_1  |  * Debug mode: on
@@ -31,6 +33,11 @@ flask_1  |  * Debugger PIN: 266-925-490
 flask_1  | 172.25.0.1 - - [07/Dec/2019 23:27:39] "GET / HTTP/1.1" 200 -
 #+END_EXAMPLE
 
+- 開発サーバでは書き直しでリロードする
+- PIN番号はエラー時にブラウザに打ち込むと、ブラウザ上にてpythonでデバッグできる
+- 停止するときには `C-c`
+
+
 * ローカルでgunicornを起動する
 
 - 作成されるDockerイメージはfargate等にそのまま用いることができる (=fargate cli=等を利用)
@@ -38,7 +45,5 @@ flask_1  | 172.25.0.1 - - [07/Dec/2019 23:27:39] "GET / HTTP/1.1" 200 -
 - もちろんローカルでも下記のように起動できる
 
 #+BEGIN_SRC sh :exports both :results pp
-docker run --rm -p 5000:5000 flask-base_flask
+docker run --rm -p 5000:80 flask-base_flask
 #+END_SRC
-
-- 問題点 :: ログを標準出力に出せていない
